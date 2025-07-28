@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B-Premium Diesel Clients</title>
+    <script src="data.js" defer></script> <!-- Load your client data -->
+    <style>
+        /* [Same responsive CSS as before] */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            background-color: #f9f9f9;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .edit-btn {
+            background-color: orange;
+        }
+
+            .edit-btn:hover {
+                background-color: darkorange;
+            }
+
+        .search-box, .form-container, .table-container {
+            margin-top: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body onload="loadData()">
+
+    <h2>🛢️ B-Premium Diesel Clients</h2>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()" />
+    </div>
+
+    <div class="table-container">
+        <table id="clientsTable">
+            <thead>
+                <tr>
+                    <th>Station Name</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Status</th>
+                    <th>Plate Nr</th>
+                    <th>Phone</th>
+                    <th>Card Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Filled by JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-container">
+        <h3 id="formTitle">Add / Edit Client</h3>
+        <input type="text" id="station" placeholder="Station Name" />
+        <input type="text" id="name" placeholder="Name" />
+        <input type="text" id="surname" placeholder="Surname" />
+        <input type="text" id="status" placeholder="Status" />
+        <input type="text" id="plate" placeholder="Plate Number" />
+        <input type="tel" id="phone" placeholder="Phone Number" />
+        <input type="text" id="cardNumber" placeholder="Card Number" />
+        <button onclick="saveClient()">💾 Save Client</button>
+    </div>
+
+    <script>
+    let editIndex = null;
+
+    function loadData() {
+      const tableBody = document.getElementById("tableBody");
+      data.forEach(client => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${client.StationName}</td>
+          <td>${client.Name}</td>
+          <td>${client.Surname}</td>
+          <td>${client.Status}</td>
+          <td>${client.PlateNr}</td>
+          <td>${client.Phone}</td>
+          <td>${client.CardNmb}</td>
+          <td><button class="edit-btn" onclick="editClient(this)">Edit</button></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const rows = document.querySelectorAll("#tableBody tr");
+      rows.forEach(row => {
+        const cells = Array.from(row.getElementsByTagName("td")).slice(0, 7);
+        const match = cells.some(td => td.textContent.toLowerCase().includes(input));
+        row.style.display = match ? "" : "none";
+      });
+    }
+
+    function saveClient() {
+      const station = document.getElementById("station").value.trim();
+      const name = document.getElementById("name").value.trim();
+      const surname = document.getElementById("surname").value.trim();
+      const status = document.getElementById("status").value.trim();
+      const plate = document.getElementById("plate").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const cardNumber = document.getElementById("cardNumber").value.trim();
+
+      if (!station || !name || !surname || !status || !plate || !phone || !cardNumber) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      const newRow = `
+        <tr>
+          <td>${station}</td>
+          <td>${name}</td>
+          <td>${surname}</td>
+          <td>${status}</td>
+          <td>${plate}</td>
+          <td>${phone}</td>
+          <td>${cardNumber}</td>
+          <td><button class="edit-btn" onclick="editClient(this)">Edit</button></td>
+        </tr>
+      `;
+
+      const tableBody = document.getElementById("tableBody");
+
+      if (editIndex !== null) {
+        tableBody.rows[editIndex].outerHTML = newRow;
+        editIndex = null;
+        document.getElementById("formTitle").textContent = "Add / Edit Client";
+      } else {
+        tableBody.insertAdjacentHTML("beforeend", newRow);
+      }
+
+      clearForm();
+    }
+
+    function editClient(button) {
+      const row = button.parentElement.parentElement;
+      editIndex = row.rowIndex - 1;
+
+      document.getElementById("station").value = row.cells[0].textContent;
+      document.getElementById("name").value = row.cells[1].textContent;
+      document.getElementById("surname").value = row.cells[2].textContent;
+      document.getElementById("status").value = row.cells[3].textContent;
+      document.getElementById("plate").value = row.cells[4].textContent;
+      document.getElementById("phone").value = row.cells[5].textContent;
+      document.getElementById("cardNumber").value = row.cells[6].textContent;
+
+      document.getElementById("formTitle").textContent = "Edit Client";
+    }
+
+    function clearForm() {
+      document.getElementById("station").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("surname").value = "";
+      document.getElementById("status").value = "";
+      document.getElementById("plate").value = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("cardNumber").value = "";
+    }
+    </script>
+</body>
+</html>
