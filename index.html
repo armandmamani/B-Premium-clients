@@ -4,87 +4,98 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>B-Premium Diesel Clients</title>
-    <script src="data.js" defer></script> <!-- Load your client data -->
     <style>
         /* [Same responsive CSS as before] */
         * {
             box-sizing: border-box;
-        }
-
-        body {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            margin: 10px;
-            background-color: #f9f9f9;
         }
-
-        h2, h3 {
-            text-align: center;
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: #12161C;
+                padding: 20px;
+                max-height: 1400px;
+            }
         }
+            @media (prefers-color-scheme: dark) {
 
-        input[type="text"], input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-
-        button {
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-            button:hover {
-                background-color: #0056b3;
+                img, button, div, section {
+                    filter: none !important;
+                }
             }
 
-        .edit-btn {
-            background-color: orange;
-        }
-
-            .edit-btn:hover {
-                background-color: darkorange;
+            h2, h3 {
+                text-align: center;
+                color: white;
             }
 
-        .search-box, .form-container, .table-container {
-            margin-top: 20px;
-        }
+            input[type="text"], input[type="tel"] {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
 
-        .table-container {
-            overflow-x: auto;
-            background-color: white;
-            border-radius: 8px;
-        }
+            button {
+                padding: 10px;
+                margin-top: 10px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 16px;
+            }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
+                button:hover {
+                    background-color: #0056b3;
+                }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
+            .edit-btn {
+                background-color: orange;
+            }
 
-        th {
-            background-color: #333;
-            color: white;
-        }
+                .edit-btn:hover {
+                    background-color: darkorange;
+                }
 
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
+            .search-box, .form-container, .table-container {
+                margin-top: 20px;
+            }
+
+            .table-container {
+                width: 95%;
+                overflow-x: auto;
+                background-color: white;
+                border-radius: 8px;
+            }
+
+            table {
+                width: 90%;
+                border-collapse: collapse;
+                min-width: 800px;
+            }
+
+            th, td {
+                border: 1px solid #ddd;
+                padding: 5px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #333;
+                color: white;
+            }
+
+            .form-container {
+                background-color: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            }
     </style>
 </head>
 <body onload="loadData()">
@@ -126,7 +137,7 @@
         <input type="text" id="cardNumber" placeholder="Card Number" />
         <button onclick="saveClient()">💾 Save Client</button>
     </div>
-
+    <script src="data.js" defer></script> <!-- Load your client data -->
     <script>
     let editIndex = null;
 
