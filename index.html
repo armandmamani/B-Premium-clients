@@ -31,24 +31,31 @@
                 color: orangered;
             }
 
-            input[type="text"], input[type="tel"] {
-                width: 100%;
-                padding: 10px;
-                margin: 5px 0;
-                border: 1px solid #ccc;
-                border-radius: 6px;
-            }
-
-            button {
-                padding: 10px;
-                margin-top: 10px;
-                background-color: #007BFF;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 16px;
-            }
+        input[type="text"], input[type="tel"] {
+            width: 40%;
+            padding: 10px;
+            margin: 5px 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        #kerkoText {
+            width: 40%;
+            text-align: left;
+            margin-top: 10px;
+            font-size: 18px;
+            display: inline-block;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
                 button:hover {
                     background-color: #0056b3;
@@ -112,6 +119,7 @@
 
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()" />
+        <h3 id="kerkoText">  Kerko ketu  </h3>
     </div>
 
     <div class="table-container">
