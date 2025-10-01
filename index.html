@@ -129,9 +129,9 @@
                     <th>Station Name</th>
                     <th>Name</th>
                     <th>Surname</th>
-                    <th>Status</th>
                     <th>Plate Nr</th>
                     <th>Phone</th>
+                    <th>Email</th>
                     <th>Card Number</th>
                     <th>Action</th>
                 </tr>
@@ -147,9 +147,9 @@
         <input type="text" id="station" placeholder="Station Name" />
         <input type="text" id="name" placeholder="Name" />
         <input type="text" id="surname" placeholder="Surname" />
-        <input type="text" id="status" placeholder="Status" />
         <input type="text" id="plate" placeholder="Plate Number" />
         <input type="tel" id="phone" placeholder="Phone Number" />
+        <input type="email" id="email" placeholder="Email" />
         <input type="text" id="cardNumber" placeholder="Card Number" />
         <button onclick="saveClient()">💾 Save Client</button>
     </div>
@@ -165,9 +165,9 @@
           <td>${client.StationName}</td>
           <td>${client.Name}</td>
           <td>${client.Surname}</td>
-          <td>${client.Status}</td>
           <td>${client.PlateNr}</td>
           <td>${client.Phone}</td>
+          <td>${client.Email}</td>
           <td>${client.CardNmb}</td>
           <td><button class="edit-btn" onclick="editClient(this)">Edit</button></td>
         `;
@@ -189,12 +189,13 @@
       const station = document.getElementById("station").value.trim();
       const name = document.getElementById("name").value.trim();
       const surname = document.getElementById("surname").value.trim();
-      const status = document.getElementById("status").value.trim();
       const plate = document.getElementById("plate").value.trim();
       const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+
       const cardNumber = document.getElementById("cardNumber").value.trim();
 
-      if (!station || !name || !surname || !status || !plate || !phone || !cardNumber) {
+      if (!station || !name || !surname || !email || !plate || !phone || !cardNumber) {
         alert("Please fill all fields");
         return;
       }
@@ -204,9 +205,9 @@
           <td>${station}</td>
           <td>${name}</td>
           <td>${surname}</td>
-          <td>${status}</td>
           <td>${plate}</td>
           <td>${phone}</td>
+          <td>${email}</td>
           <td>${cardNumber}</td>
           <td><button class="edit-btn" onclick="editClient(this)">Edit</button></td>
         </tr>
@@ -232,9 +233,9 @@
       document.getElementById("station").value = row.cells[0].textContent;
       document.getElementById("name").value = row.cells[1].textContent;
       document.getElementById("surname").value = row.cells[2].textContent;
-      document.getElementById("status").value = row.cells[3].textContent;
       document.getElementById("plate").value = row.cells[4].textContent;
       document.getElementById("phone").value = row.cells[5].textContent;
+        document.getElementById("email").value = row.cells[3].textContent;
       document.getElementById("cardNumber").value = row.cells[6].textContent;
 
       document.getElementById("formTitle").textContent = "Edit Client";
@@ -244,9 +245,9 @@
       document.getElementById("station").value = "";
       document.getElementById("name").value = "";
       document.getElementById("surname").value = "";
-      document.getElementById("status").value = "";
       document.getElementById("plate").value = "";
       document.getElementById("phone").value = "";
+      document.getElementById("email").value = "";
       document.getElementById("cardNumber").value = "";
     }
     </script>
