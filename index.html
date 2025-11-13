@@ -7,11 +7,13 @@
     <style>
         /* [Same responsive CSS as before] */
         * {
+            max-width: 600px;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
         }
+
         @media only screen and (max-width: 600px) {
             body {
                 background-color: #12161C;
@@ -19,17 +21,18 @@
                 max-height: 1400px;
             }
         }
-            @media (prefers-color-scheme: dark) {
 
-                img, button, div, section {
-                    filter: none !important;
-                }
-            }
+        @media (prefers-color-scheme: dark) {
 
-            h2, h3 {
-                text-align: center;
-                color: orangered;
+            img, button, div, section {
+                filter: none !important;
             }
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: orangered;
+        }
 
         input[type="text"], input[type="tel"] {
             width: 40%;
@@ -39,6 +42,7 @@
             border-radius: 6px;
             display: inline-block;
         }
+
         #kerkoText {
             width: 40%;
             text-align: left;
@@ -46,6 +50,7 @@
             font-size: 18px;
             display: inline-block;
         }
+
         button {
             padding: 10px;
             margin-top: 10px;
@@ -57,9 +62,9 @@
             font-size: 16px;
         }
 
-                button:hover {
-                    background-color: #0056b3;
-                }
+            button:hover {
+                background-color: #0056b3;
+            }
 
         .edit-btn {
             background-color: orange;
@@ -69,29 +74,31 @@
             width: 40px;
         }
 
-                .edit-btn:hover {
-                    background-color: darkorange;
-                }
-
-            .search-box, .form-container, .table-container {
-                margin-top: 20px;
+            .edit-btn:hover {
+                background-color: darkorange;
             }
 
-            .table-container {
-                width: 95%;
-                overflow-x: auto;
-                background-color: white;
-                border-radius: 8px;
-            }
+        .search-box, #form-container, .table-container {
+            margin-top: 20px;
+        }
+
+        .table-container {
+            width: 95%;
+            overflow-x: auto;
+            background-color: white;
+            border-radius: 8px;
+        }
 
         table {
             width: 100%;
             border-collapse: collapse;
             border-spacing: 0;
         }
+
         tr {
-            height:20px;
+            height: 20px;
         }
+
         th, td {
             border: 1px solid #bbb;
             padding: 1px;
@@ -100,22 +107,26 @@
             max-height: 20px;
         }
 
-            th {
-                background-color: #333;
-                color: white;
-            }
+        th {
+            background-color: #333;
+            color: white;
+        }
 
-            .form-container {
-                background-color: white;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            }
+        #form-container {
+            position: absolute;
+            display: none;
+            top: 50px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
     </style>
 </head>
 <body onload="loadData()">
 
-    <h2>🛢️ B-Premium Diesel Clients</h2>
+    <h2>B-Premium Diesel Clients</h2>
 
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchTable()" />
@@ -131,8 +142,6 @@
                     <th>Surname</th>
                     <th>Plate Nr</th>
                     <th>Phone</th>
-                    <th>Email</th>
-                    <th>Card Number</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -142,15 +151,13 @@
         </table>
     </div>
 
-    <div class="form-container">
+    <div id="form-container">
         <h3 id="formTitle">Add / Edit Client</h3>
         <input type="text" id="station" placeholder="Station Name" />
         <input type="text" id="name" placeholder="Name" />
         <input type="text" id="surname" placeholder="Surname" />
         <input type="text" id="plate" placeholder="Plate Number" />
         <input type="tel" id="phone" placeholder="Phone Number" />
-        <input type="email" id="email" placeholder="Email" />
-        <input type="text" id="cardNumber" placeholder="Card Number" />
         <button onclick="saveClient()">💾 Save Client</button>
     </div>
     <script src="data.js" defer></script> <!-- Load your client data -->
@@ -167,8 +174,6 @@
           <td>${client.Surname}</td>
           <td>${client.PlateNr}</td>
           <td>${client.Phone}</td>
-          <td>${client.Email}</td>
-          <td>${client.CardNmb}</td>
           <td><button class="edit-btn" onclick="editClient(this)">Edit</button></td>
         `;
         tableBody.appendChild(row);
@@ -185,17 +190,16 @@
       });
     }
 
-    function saveClient() {
+        function saveClient() {
+
       const station = document.getElementById("station").value.trim();
       const name = document.getElementById("name").value.trim();
       const surname = document.getElementById("surname").value.trim();
       const plate = document.getElementById("plate").value.trim();
       const phone = document.getElementById("phone").value.trim();
-      const email = document.getElementById("email").value.trim();
 
-      const cardNumber = document.getElementById("cardNumber").value.trim();
 
-      if (!station || !name || !surname || !email || !plate || !phone || !cardNumber) {
+      if (!station || !name || !surname  || !plate || !phone) {
         alert("Please fill all fields");
         return;
       }
@@ -207,8 +211,6 @@
           <td>${surname}</td>
           <td>${plate}</td>
           <td>${phone}</td>
-          <td>${email}</td>
-          <td>${cardNumber}</td>
           <td><button class="edit-btn" onclick="editClient(this)">Edit</button></td>
         </tr>
       `;
@@ -222,21 +224,21 @@
       } else {
         tableBody.insertAdjacentHTML("beforeend", newRow);
       }
+            document.getElementById("form-container").style.display = "none";
 
       clearForm();
     }
 
-    function editClient(button) {
+        function editClient(button) {
+      document.getElementById("form-container").style.display = "block";
       const row = button.parentElement.parentElement;
       editIndex = row.rowIndex - 1;
 
       document.getElementById("station").value = row.cells[0].textContent;
       document.getElementById("name").value = row.cells[1].textContent;
       document.getElementById("surname").value = row.cells[2].textContent;
-      document.getElementById("plate").value = row.cells[4].textContent;
-      document.getElementById("phone").value = row.cells[5].textContent;
-      document.getElementById("email").value = row.cells[3].textContent;
-      document.getElementById("cardNumber").value = row.cells[6].textContent;
+      document.getElementById("plate").value = row.cells[3].textContent;
+      document.getElementById("phone").value = row.cells[4].textContent;
 
       document.getElementById("formTitle").textContent = "Edit Client";
     }
