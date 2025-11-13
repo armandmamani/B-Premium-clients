@@ -7,28 +7,12 @@
     <style>
         /* [Same responsive CSS as before] */
         * {
-            max-width: 600px;
+            max-width: 520px;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
         }
-
-        @media only screen and (max-width: 600px) {
-            body {
-                background-color: #12161C;
-                padding: 20px;
-                max-height: 1400px;
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-
-            img, button, div, section {
-                filter: none !important;
-            }
-        }
-
         h2, h3 {
             text-align: center;
             color: orangered;
@@ -88,7 +72,9 @@
             background-color: white;
             border-radius: 8px;
         }
-
+        #clientsTable {
+            width: 100%;
+        }    
         table {
             width: 100%;
             border-collapse: collapse;
@@ -100,10 +86,11 @@
         }
 
         th, td {
+            width:max-content;
             border: 1px solid #bbb;
             padding: 1px;
             text-align: left;
-            font-size: 14px;
+            font-size: 12px;
             max-height: 20px;
         }
 
@@ -137,7 +124,7 @@
         <table id="clientsTable">
             <thead>
                 <tr>
-                    <th>Station Name</th>
+                    <th>St. Name</th>
                     <th>Name</th>
                     <th>Surname</th>
                     <th>Plate Nr</th>
@@ -153,7 +140,7 @@
 
     <div id="form-container">
         <h3 id="formTitle">Add / Edit Client</h3>
-        <input type="text" id="station" placeholder="Station Name" />
+        <input type="text" id="station" placeholder="St Name" />
         <input type="text" id="name" placeholder="Name" />
         <input type="text" id="surname" placeholder="Surname" />
         <input type="text" id="plate" placeholder="Plate Number" />
