@@ -19,7 +19,7 @@
         }
 
         input[type="text"], input[type="tel"] {
-            width: 40%;
+            width: 45%;
             padding: 10px;
             margin: 5px 5px;
             border: 1px solid #ccc;
@@ -102,13 +102,19 @@
         #form-container {
             position: absolute;
             display: none;
-            top: 50px;
+            width: 450px;
+            top: 15vh;
             background-color: white;
-            padding: 20px;
+            padding: 10px;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             z-index: 1000;
         }
+
+        #saveBtn {
+            background-color: green;
+            margin-left: 70px;
+        }  
     </style>
 </head>
 <body onload="loadData()">
@@ -145,7 +151,7 @@
         <input type="text" id="surname" placeholder="Surname" />
         <input type="text" id="plate" placeholder="Plate Number" />
         <input type="tel" id="phone" placeholder="Phone Number" />
-        <button onclick="saveClient()">💾 Save Client</button>
+        <button id="saveBtn" onclick="saveClient()">💾 Save Client</button>
     </div>
     <script src="data.js" defer></script> <!-- Load your client data -->
     <script>
