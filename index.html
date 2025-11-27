@@ -99,9 +99,21 @@
             color: white;
         }
 
+        #fieldOfFormContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+
         #form-container {
             position: absolute;
-            display: none;
+            display: block;
             width: 450px;
             top: 15vh;
             background-color: white;
@@ -143,15 +155,16 @@
             </tbody>
         </table>
     </div>
-
-    <div id="form-container">
-        <h3 id="formTitle">Add / Edit Client</h3>
-        <input type="text" id="station" placeholder="St Name" />
-        <input type="text" id="name" placeholder="Name" />
-        <input type="text" id="surname" placeholder="Surname" />
-        <input type="text" id="plate" placeholder="Plate Number" />
-        <input type="tel" id="phone" placeholder="Phone Number" />
-        <button id="saveBtn" onclick="saveClient()">💾 Save Client</button>
+    <div id="fieldOfFormContainer">
+        <div id="form-container">
+            <h3 id="formTitle">Add / Edit Client</h3>
+            <input type="text" id="station" placeholder="St Name" />
+            <input type="text" id="name" placeholder="Name" />
+            <input type="text" id="surname" placeholder="Surname" />
+            <input type="text" id="plate" placeholder="Plate Number" />
+            <input type="tel" id="phone" placeholder="Phone Number" />
+            <button id="saveBtn" onclick="saveClient()">💾 Save Client</button>
+        </div>
     </div>
     <script src="data.js" defer></script> <!-- Load your client data -->
     <script>
@@ -217,13 +230,13 @@
       } else {
         tableBody.insertAdjacentHTML("beforeend", newRow);
       }
-            document.getElementById("form-container").style.display = "none";
+            document.getElementById("fieldOfFormContainer").style.display = "none";
 
       clearForm();
     }
 
         function editClient(button) {
-      document.getElementById("form-container").style.display = "block";
+      document.getElementById("fieldOfFormContainer").style.display = "block";
       const row = button.parentElement.parentElement;
       editIndex = row.rowIndex - 1;
 
