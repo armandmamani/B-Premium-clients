@@ -1882,7 +1882,7 @@ const data = [
 { StationName: "Permet", Name : "Fuat", Surname : "jaupi", Status : "Klient", PlateNr: "AB953PV", Phone: " + 355696424173", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
 { StationName: "Berat", Name : "Ermir", Surname : "Merko", Status : "Klient", PlateNr: "AC939T", Phone: " + 355692629324", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
 { StationName: "Pogradec", Name : "Erjon", Surname : "Manxhari", Status : "Klient", PlateNr: "AB980RE", Phone: " + 355683109202", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
-{ StationName: "Cuke", Name : "Fation", Surname : "Ademi", Status : "Klient", PlateNr: "AB238PI", Phone: " + 355685034948", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
+{ StationName: "Cuke", Name : "Fation", Surname : "Ademi", Status : "Klient", PlateNr: "AB238PI", Phone: " + 355685034948", CardNmb: "0", Email  : "0", applicated : "B - Premium Campaign" },
 { StationName: "Cuke", Name : "Marius", Surname : "Goro", Status : "Klient", PlateNr: "AB552MM", Phone: " + 355696568450", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
 { StationName: "Durres", Name : "Ilia", Surname : "Koci", Status : "Klient", PlateNr: "AB413TJ", Phone: " + 355699388868", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
 { StationName: "Durres", Name : "Qazim", Surname : "Kashani", Status : "Klient", PlateNr: "AB989TV", Phone: " + 355699192387", CardNmb: "0", Email : "0", applicated : "B - Premium Campaign" },
